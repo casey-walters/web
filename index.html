@@ -126,7 +126,7 @@ a:hover {
 .ticker-track {
   display: inline-block;
   padding: 10px 0;
-  animation: ticker-scroll 45s linear infinite;
+  animation: ticker-scroll 40s linear infinite;
 }
 
 .ticker span {
@@ -150,6 +150,15 @@ a:hover {
   animation-play-state: paused;
 }
 
+/* Ticker colors */
+.ticker-purple { color: #a78bfa; }
+.ticker-pink   { color: #f472b6; }
+.ticker-orange { color: #fb923c; }
+
+/* Optional: small glow */
+.ticker span span {
+  text-shadow: 0 0 6px rgba(255,255,255,0.15);
+}
 
 
 
@@ -271,15 +280,42 @@ a:hover {
 
     </section>
 
+
 <section class="ticker">
-  <div class="ticker-track">
-  <span>
-  <span style="color:#f472b6;">👾 Join the Integrations Huddle every other Tuesday at 9:00 AM CST! Bring your BUGS</span> •
-  <span style="color:#a78bfa;">🕒 Release testing</span> •
-  <span style="color:#fb923c;">🚧 Sandbox refreshes next on Friday, May 8th! Be prepared!</span>
-</span>
+  <div class="ticker-track" id="tickerTrack">
+    <span>Loading updates…</span>
   </div>
 </section>
+
+<script>
+  (async () => {
+    try {
+      // ✅ Relative path to the JSON in your repo
+      const response = await fetch("./Docs/ticker.json", { cache: "no-store" });
+      const data = await response.json();
+
+      const colorMap = {
+        purple: "ticker-purple",
+        pink: "ticker-pink",
+        orange: "ticker-orange"
+      };
+
+      const html = data.items
+        .map(item =>
+          `<span class="${colorMap[item.color] || ""}">
+            ${item.text}
+          </span>`
+        )
+        .join(" &nbsp;•&nbsp; ");
+
+      document.getElementById("tickerTrack").innerHTML =
+        `<span>${html}</span>`;
+    } catch (err) {
+      document.getElementById("tickerTrack").innerHTML =
+        `<span>⚠️ Unable to load updates</span>`;
+    }
+  })();
+</script>
 
 
   </body>
