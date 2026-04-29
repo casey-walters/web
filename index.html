@@ -1,9 +1,93 @@
+
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>This is the title of the webpage!</title>
+
+    <style>
+      /* ---------- Base styles ---------- */
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+      }
+
+      /* ---------- Hero section ---------- */
+      .hero {
+        position: relative;
+        height: 300px;
+        background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-title {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2.5rem;
+        background: rgba(0, 0, 0, 0.4);
+        text-align: center;
+      }
+
+      /* ---------- Content section ---------- */
+      .content {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .container-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .box {
+        flex: 1;
+        min-width: 250px;
+        padding: 20px;
+        background: #f4f4f4;
+        border-radius: 6px;
+      }
+    </style>
   </head>
+
   <body>
-    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-title">
+        Welcome to My Webpage
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content">
+      <p>
+        This is an example paragraph. Anything in the
+        <strong>body</strong> tag will appear on the page.
+      </p>
+
+      <div class="container-row">
+        <div class="box">
+          <h2>Container One</h2>
+          <p>Content for the first container.</p>
+        </div>
+
+        <div class="box">
+          <h2>Container Two</h2>
+          <p>Content for the second container.</p>
+        </div>
+
+        <div class="box">
+          <h2>Container Three</h2>
+          <p>Content for the third container.</p>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
