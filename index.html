@@ -114,28 +114,44 @@ a:hover {
   text-decoration: underline;
 }
 
-.announcement-card {
-  position: relative; /* required for the corner badge */
+/* ---------- Ticker Banner ---------- */
+.ticker {
+  background-color: #020617; /* darker than page bg */
+  border-top: 1px solid #334155;
+  border-bottom: 1px solid #334155;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-/* Cute floating corner badge */
-.announcement-card::after {
-  content: "NEW";
-  position: absolute;
-  top: -12px;
-  right: -12px;
+.ticker-track {
+  display: inline-block;
+  padding: 10px 0;
+  animation: ticker-scroll 28s linear infinite;
+}
 
-  background: #facc15;       /* warm yellow */
-  color: #1f2937;            /* dark slate text */
-  font-size: 0.65rem;
-  font-weight: 800;
+.ticker span {
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 0.85rem;
+  color: #22c55e;
   letter-spacing: 0.08em;
-
-  padding: 6px 12px;
-  border-radius: 999px;
-
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
+
+/* Scroll animation */
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+
+
 
     </style>
   </head>
@@ -148,17 +164,17 @@ a:hover {
       </div>
     </section>
 
-
-    <section class="announcements">
-  <div class="announcement-card">
-    <span class="announcement-badge">📣 Announcement</span>
-    <strong>Workday 2026 R1 Integration Testing</strong>
-    <p>
-      Regression testing for downstream integrations is underway.
-      Please report any failures in the COE board.
-    </p>
+<section class="ticker">
+  <div class="ticker-track">
+    <span>
+      ⚙️ Workday 2026 R1 testing in progress &nbsp;•&nbsp;
+      ✅ Confirmation SFTP upgrade completed &nbsp;•&nbsp;
+      🕒 Integration huddle moved to 8:00 AM CST &nbsp;•&nbsp;
+      🚧 New Medicare integration planned
+    </span>
   </div>
 </section>
+
 
 
     <!-- Content -->
