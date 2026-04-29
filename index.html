@@ -49,14 +49,22 @@
         flex-wrap: wrap;
       }
 
-      .box {
-        flex: 1;
-        min-width: 250px;
-        padding: 20px;
-        background-color: #111827; /* dark card */
-        border-radius: 8px;
-        border: 1px solid #1f2933;
-      }
+      
+.box {
+  flex: 1;
+  min-width: 250px;
+  padding: 20px;
+  background-color: #1e293b; /* noticeably lighter than page background */
+  border-radius: 10px;
+  border: 1px solid #334155; /* more visible border */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); /* depth */
+}
+
+.box:hover {
+  border-color: #60a5fa;
+}
+
+
 
       .box h2 {
         margin-top: 0;
@@ -66,6 +74,20 @@
       .box p {
         color: #d1d5db;
       }
+
+
+      
+a {
+  color: #60a5fa;            /* light blue */
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+a:hover {
+  color: #93c5fd;            /* brighter blue on hover */
+  text-decoration: underline;
+}
+
     </style>
   </head>
 
