@@ -129,12 +129,11 @@ a:hover {
   animation: ticker-scroll 40s linear infinite;
 }
 
-.ticker span {
-  font-family: "Cascadia Code", Consolas, monospace;
-  font-size: 0.85rem;
-  color: #22c55e;
-  letter-spacing: 0.08em;
+
+.ticker-track > span {
+  color: #22c55e; /* default only for the container text */
 }
+
 
 /* Scroll animation */
 @keyframes ticker-scroll {
@@ -282,7 +281,7 @@ a:hover {
 
 
     <script>
-  function getNextBiweeklyFriday(startDate = "2026-05-08") {
+  function getNextBiweeklyFriday(startDate = "2026-05-07") {
     const start = new Date(startDate); // known bi‑weekly Friday
     const today = new Date();
 

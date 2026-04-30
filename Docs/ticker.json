@@ -2,7 +2,7 @@
   "items": [
     { "text": "👾 Join the Integrations Huddle every other Tuesday at 9:00 AM CST! Bring your BUGS", "color": "purple" },
     { "text": "💖 Release testing in progress", "color": "pink" },
-    { "type": "biweekly-friday", "color": "orange" }
+    { "type": "biweekly-friday", "label": "🚧 Sandbox refreshes next on Friday, ", "color": "orange" }
   ]
 }
 
