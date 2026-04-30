@@ -155,9 +155,10 @@ a:hover {
 .ticker-orange { color: #fb923c; }
 
 /* Optional: small glow */
-.ticker span span {
+.ticker-track span {
   text-shadow: 0 0 6px rgba(255,255,255,0.15);
 }
+
 
 
 
@@ -358,7 +359,7 @@ a:hover {
 
 
     <script>
-  function getNextBiweeklyFriday(startDate = "2026-05-08") {
+  function getNextBiweeklyFriday(startDate = "2026-05-07") {
     const start = new Date(startDate); // known bi‑weekly Friday
     const today = new Date();
 
