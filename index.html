@@ -281,6 +281,31 @@ a:hover {
     </section>
 
 
+    <script>
+  function getNextBiweeklyFriday(startDate = "2026-05-08") {
+    const start = new Date(startDate); // known bi‑weekly Friday
+    const today = new Date();
+
+    const MS_IN_DAY = 1000 * 60 * 60 * 24;
+    const diffDays = Math.floor((today - start) / MS_IN_DAY);
+    const weeksSince = Math.floor(diffDays / 7);
+
+    const isOnCycle = weeksSince % 2 === 0;
+    const offsetWeeks = isOnCycle ? 0 : 1;
+
+    const next = new Date(today);
+    next.setDate(
+      today.getDate() +
+      ((5 - today.getDay() + 7) % 7) + (offsetWeeks * 7)
+    );
+
+    return next.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric"
+    });
+  }
+</script>
+
 <section class="ticker">
   <div class="ticker-track" id="tickerTrack">
     <span>Loading updates…</span>
@@ -301,12 +326,19 @@ a:hover {
       };
 
       const html = data.items
-        .map(item =>
-          `<span class="${colorMap[item.color] || ""}">
-            ${item.text}
-          </span>`
-        )
-        .join(" &nbsp;•&nbsp; ");
+  .map(item => {
+    if (item.type === "biweekly-friday") {
+      const date = getNextBiweeklyFriday();
+      return `<span class="${colorMap[item.color] || ""}">
+        ${item.label}: ${date}
+      </span>`;
+    }
+
+    return `<span class="${colorMap[item.color] || ""}">
+      ${item.text}
+    </span>`;
+  })
+  .join(" &nbsp;•&nbsp; ");
 
       document.getElementById("tickerTrack").innerHTML =
         `<span>${html}</span>`;
