@@ -175,7 +175,7 @@ a:hover {
     <!-- Content -->
     <section class="content">
       <p>
-        This is a home for technical Workday team members. Find documentation and resources here!
+
       </p>
 
       <div class="container-row">
@@ -358,7 +358,7 @@ a:hover {
 
 
     <script>
-  function getNextBiweeklyFriday(startDate = "2026-05-07") {
+  function getNextBiweeklyFriday(startDate = "2026-05-08") {
     const start = new Date(startDate); // known bi‑weekly Friday
     const today = new Date();
 
@@ -406,12 +406,12 @@ a:hover {
     if (item.type === "biweekly-friday") {
       const date = getNextBiweeklyFriday();
       return `<span class="${colorMap[item.color] || ""}">
-        ${item.label}: ${date}
+        ${prefix} ${date}
       </span>`;
     }
 
     return `<span class="${colorMap[item.color] || ""}">
-      ${prefix} ${date}
+      ${item.text}
     </span>`;
   })
   .join(" &nbsp;•&nbsp; ");
