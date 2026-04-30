@@ -406,7 +406,7 @@ a:hover {
     if (item.type === "biweekly-friday") {
       const date = getNextBiweeklyFriday();
       return `<span class="${colorMap[item.color] || ""}">
-        ${prefix} ${date}
+       ${item.prefix} ${date}
       </span>`;
     }
 
@@ -417,7 +417,7 @@ a:hover {
   .join(" &nbsp;•&nbsp; ");
 
       document.getElementById("tickerTrack").innerHTML =
-        `<span>${html}</span>`;
+        html;
     } catch (err) {
       document.getElementById("tickerTrack").innerHTML =
         `<span>⚠️ Unable to load updates</span>`;
