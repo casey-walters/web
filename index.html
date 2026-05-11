@@ -362,36 +362,34 @@ onenote:https://plantemoran.sharepoint.com/sites/8067787/SiteAssets/Workday%20So
     </section>
 
 
-    <script>
-  function getNextBiweeklyFriday(startDate = "2026-05-07") {
-    const start = new Date(startDate); // known bi‑weekly Friday
+<script>
+  function getNextBiweeklyFriday(anchorDate = "2026-05-08") {
+    // anchorDate MUST be a real bi‑weekly Friday
+    const anchor = new Date(anchorDate);
     const today = new Date();
 
-    const MS_IN_DAY = 1000 * 60 * 60 * 24;
-    const diffDays = Math.floor((today - start) / MS_IN_DAY);
-    const weeksSince = Math.floor(diffDays / 7);
+    anchor.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
 
-    const isOnCycle = weeksSince % 2 === 0;
-    const offsetWeeks = isOnCycle ? 0 : 1;
+    const MS_IN_DAY = 86400000;
+    const diffDays = Math.floor((today - anchor) / MS_IN_DAY);
 
-    const next = new Date(today);
-    next.setDate(
-      today.getDate() +
-      ((5 - today.getDay() + 7) % 7) + (offsetWeeks * 7)
-    );
+    const cycles = Math.ceil(diffDays / 14);
+
+    const next = new Date(anchor);
+    next.setDate(anchor.getDate() + cycles * 14);
+
+    if (next < today) {
+      next.setDate(next.getDate() + 14);
+    }
 
     return next.toLocaleDateString("en-US", {
+      weekday: "short",
       month: "short",
       day: "numeric"
     });
   }
 </script>
-
-<section class="ticker">
-  <div class="ticker-track" id="tickerTrack">
-    <span>Loading updates…</span>
-  </div>
-</section>
 
 <script>
   (async () => {
