@@ -364,27 +364,33 @@ onenote:https://plantemoran.sharepoint.com/sites/8067787/SiteAssets/Workday%20So
 
 <script>
   function getNextBiweeklyFriday(anchorDate = "2026-05-08") {
-    // anchorDate MUST be a real bi‑weekly Friday
-    const anchor = new Date(anchorDate);
-    const today = new Date();
-
-    anchor.setHours(0, 0, 0, 0);
-    today.setHours(0, 0, 0, 0);
-
     const MS_IN_DAY = 86400000;
+
+    // Lock to noon to avoid DST issues
+    const anchor = new Date(anchorDate + "T12:00:00");
+    const today = new Date();
+    today.setHours(12, 0, 0, 0);
+
+    // Fallback if anchor is invalid
+    if (isNaN(anchor.getTime())) {
+      return "Invalid date";
+    }
+
     const diffDays = Math.floor((today - anchor) / MS_IN_DAY);
 
-    const cycles = Math.ceil(diffDays / 14);
+    // If before anchor, show anchor
+    if (diffDays < 0) {
+      return anchor.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric"
+      });
+    }
 
+    const cycles = Math.floor(diffDays / 14) + 1;
     const next = new Date(anchor);
     next.setDate(anchor.getDate() + cycles * 14);
 
-    if (next < today) {
-      next.setDate(next.getDate() + 14);
-    }
-
     return next.toLocaleDateString("en-US", {
-      weekday: "short",
       month: "short",
       day: "numeric"
     });
